@@ -192,9 +192,22 @@ main {
   bottom: 0;
 }
 
+/* Base styling for the logo SVG */
 .logo-svg {
-  fill: white;
+  fill: var(--accent-white); /* Default fill color */
   stroke: black;
+  transition: fill 3s ease-in-out; /* Smooth transition on state change */
+}
+
+/* Path elements inside the SVG will animate on hover */
+.cls-1:hover {
+  fill: hsla(0, 100%, 50%, 0.7);
+  transition: fill 0.5s ease-in-out;
+}
+
+/* Return to default color after hover ends */
+.cls-1 {
+  transition: fill 3s ease-in-out; /* Smooth transition back to base color */
 }
 
 .line-divider {
@@ -268,7 +281,7 @@ main {
   padding: 0.5rem 0.7em;
   margin: 0 0 1em 0;
   box-decoration-break: clone;
-  border: 5px solid #9bd575;
+  border-left: 5px solid #9bd575;
 }
 
 .content__about-desc p a {
@@ -526,7 +539,9 @@ footer {
 @media only screen and (max-width: 750px) {
   .menu-container {
     position: fixed;
+    display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 12px;
     height: 100%;
     gap: 30px;
@@ -534,6 +549,10 @@ footer {
 
   .menu-list {
     flex-wrap: wrap;
+  }
+
+  .menu-list span {
+    display: none;
   }
 
   #home {

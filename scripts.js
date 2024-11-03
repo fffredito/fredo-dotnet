@@ -160,6 +160,13 @@ function loadMoreItems() {
 // Event listener for the 'Load More' button
 loadMoreBtn.addEventListener('click', loadMoreItems);
 
+// Keyboard shortcut for the "M" key
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'M' || event.key === 'm') {
+        loadMoreItems();
+    }
+});
+
 
 //REMOVE HIDDEN ON MOBILE
 // Function to check the screen width and remove the 'hidden' class
@@ -174,9 +181,36 @@ function checkScreenWidth() {
   
   // Run the function on page load
   checkScreenWidth();
+
+
+  
   
   // Attach an event listener to monitor window resize
   window.addEventListener('resize', checkScreenWidth);
   
+  const wavePath = document.getElementById('wavePath');
+  const width = 2400;  // Match this with container width
+  const height = 400; // Match this with container height
+  const baseAmplitude = 40; // Base amplitude for wave heights
+  const frequency = 800; // Frequency of wave
+  let phase = 0; // Phase shift for wave movement
 
+  function generateWave() {
+      let path = '';
+      const amplitudeVariation = Math.random() * baseAmplitude; // Random variation in amplitude
+      
+      for (let i = 0; i <= width; i++) {
+          // Create a sine wave with a phase shift and a varying amplitude
+          const y = height / 2 + Math.sin((i / frequency) + phase) * (baseAmplitude + amplitudeVariation);
+          path += `${i === 0 ? 'M' : 'L'}${i},${y} `;
+      }
+      wavePath.setAttribute('d', path);
+  }
 
+  function animateWave() {
+      generateWave();
+      phase += 0.1; // Increment phase to move the wave
+      requestAnimationFrame(animateWave); // Use requestAnimationFrame for smoother animations
+  }
+
+  animateWave();

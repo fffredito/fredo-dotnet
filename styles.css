@@ -194,10 +194,11 @@ main {
 
 /* Base styling for the logo SVG */
 .logo-svg {
-  fill: var(--accent-white); /* Default fill color */
+  fill: var(--accent-white);
   stroke: black;
-  transition: fill 3s ease-in-out; /* Smooth transition on state change */
+  transition: fill 3s ease-in-out;
 }
+
 
 /* Path elements inside the SVG will animate on hover */
 .cls-1:hover {
@@ -568,7 +569,7 @@ footer {
   .pg-header-text {
     position: relative;
     margin: 0 auto;
-    padding: 20px;
+    padding: 5px;
     text-wrap: wrap;
   }
 
@@ -579,6 +580,19 @@ footer {
     align-items: center;
     position: absolute;
   }
+
+  .logo-svg {
+    fill: var(--accent-white);
+    animation: spin 10s linear infinite;
+  }
+  @keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
   .content__vis-wrapper,
   .content__prod-wrap {

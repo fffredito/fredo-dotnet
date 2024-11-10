@@ -30,9 +30,10 @@ document.addEventListener('mousemove', handleMouseMove);
 // Handles mouse movement and checks if the cursor is over a grid item
 function handleMouseMove(event) {
     const isCursorOverGridItem = event.target.closest('.content__vis--grid__item');
+    const isCursorInGridContainer = event.target.closest('.content__vis--grid');
     const idleMessage = document.getElementById('idleMessage');
 
-    if (!isCursorOverGridItem) {
+    if (isCursorInGridContainer && !isCursorOverGridItem) {
         resetIdleTimer(event.clientX, event.clientY);
     } else {
         clearTimers();
@@ -45,12 +46,18 @@ function displayIdleMessage(x, y) {
     if (window.innerWidth <= 800) return;
 
     const idleMessage = document.getElementById('idleMessage');
-    positionIdleMessage(idleMessage, x, y);
-    idleMessage.style.display = 'block';
+    const isCursorOverGridItem = document.elementFromPoint(x, y).closest('.content__vis--grid__item');
+    const isCursorInGridContainer = document.elementFromPoint(x, y).closest('.content__vis--grid');
 
-    messageTimeout = setTimeout(() => {
-        hideIdleMessage(idleMessage);
-    }, 4500); // Hide message after 5 seconds
+    // Show the idle message only if the cursor is inside the grid container but outside grid items
+    if (isCursorInGridContainer && !isCursorOverGridItem) {
+        positionIdleMessage(idleMessage, x, y);
+        idleMessage.style.display = 'block';
+
+        messageTimeout = setTimeout(() => {
+            hideIdleMessage(idleMessage);
+        }, 4500); // Hide message after 4.5 seconds
+    }
 }
 
 // Resets the idle timer to wait for inactivity before showing the message
@@ -74,11 +81,12 @@ function hideIdleMessage(idleMessage) {
 // Positions the idle message near the cursor
 function positionIdleMessage(idleMessage, x, y) {
     idleMessage.style.left = `${x + 10}px`;
-    idleMessage.style.top = `${y + -8}px`;
+    idleMessage.style.top = `${y - 8}px`;
 }
 
 // Initialize idle timer on page load
 resetIdleTimer();
+
 
 
 

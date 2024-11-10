@@ -327,7 +327,7 @@ main {
 .content__vis-wrapper {
   position: relative;
   width: 100%;
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .visz-legend {
@@ -519,6 +519,7 @@ main {
 
 .load-more-btn:hover {
   background-color: #312fa6;
+  color: var(--accent-white);
 }
 
 /* --- FOOTER */
@@ -581,18 +582,6 @@ footer {
     position: absolute;
     top: 130px;
     fill: var(--accent-white);
-    animation: upDown 5s linear infinite ease-in-out;
-  }
-  @keyframes upDown {
-    0% {
-      transform: translate(0, 10%);
-    }
-    50% {
-      transform: translate(0, 50%);
-    }
-    100% {
-      transform: translate(0, 10%);
-    }
   }
 
   .move-down {
@@ -626,6 +615,11 @@ footer {
 
   .content__vis--grid__item {
     width: 100%;
+  }
+
+  .content__vis--grid__item__img {
+    height: 300px;
+    min-height: 240px;
   }
 
   .scan-smears img {

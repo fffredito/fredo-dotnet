@@ -128,7 +128,8 @@ main {
 
 /* --- MENU */
 
-.menu-container {
+.menu-container,
+.menu-container-mobile {
   position: fixed;
   width: 100%;
   max-width: 1500px;
@@ -326,7 +327,7 @@ main {
 .content__vis-wrapper {
   position: relative;
   width: 100%;
-  margin-top: 20px;
+  padding: 20px 0;
 }
 
 .visz-legend {
@@ -547,10 +548,12 @@ footer {
     padding: 12px;
     height: 100%;
     gap: 30px;
-    z-index: -10;
+    z-index: 10;
+    pointer-events: none;
   }
   .menu-container-mobile {
     flex-direction: column;
+    padding: 12px;
     height: 100%;
     gap: 30px;
     z-index: 0;
@@ -567,6 +570,7 @@ footer {
 
   .menu-list {
     flex-wrap: wrap;
+    pointer-events: auto;
   }
 
   .menu-list span {
@@ -578,7 +582,7 @@ footer {
   }
 
   .socials {
-    position: relative;
+    position: absolute;
     bottom: 10px;
   }
 
@@ -616,7 +620,6 @@ footer {
 
   .content__vis-wrapper {
     margin-top: 10px;
-    margin-bottom: 60px;
   }
 
   .content__vis--grid {
@@ -630,6 +633,14 @@ footer {
   .content__vis--grid__item__img {
     height: 300px;
     min-height: 240px;
+  }
+
+  .visz-legend {
+    padding: 12px 0;
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .scan-smears img {

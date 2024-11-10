@@ -578,7 +578,7 @@ footer {
   .logo-svg {
     transform: scale(1.4);
     position: absolute;
-    top: 150px;
+    top: 130px;
     fill: var(--accent-white);
     animation: upDown 5s linear infinite ease-in-out;
   }
@@ -595,15 +595,15 @@ footer {
   }
 
   .move-down {
-    top: 240px;
+    top: 220px;
   }
 
   .move-down-330 {
-    top: 330px;
+    top: 310px;
   }
 
   .move-down-420 {
-    top: 420px;
+    top: 400px;
   }
 
   .content__vis-wrapper,

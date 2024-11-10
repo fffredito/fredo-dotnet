@@ -20,21 +20,24 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-
 // Cursor hover effect for VISUALIZERS page
 let idleTimeout;
 let messageTimeout;
 
-document.addEventListener('mousemove', handleMouseMove);
+document.addEventListener('mousemove', handleMouseInteraction);
+document.addEventListener('touchstart', handleMouseInteraction); // Added for mobile touch support
 
-// Handles mouse movement and checks if the cursor is over a grid item
-function handleMouseMove(event) {
+// Handles mouse or touch interaction and checks if the cursor is over a grid item
+function handleMouseInteraction(event) {
     const isCursorOverGridItem = event.target.closest('.content__vis--grid__item');
     const isCursorInGridContainer = event.target.closest('.content__vis--grid');
     const idleMessage = document.getElementById('idleMessage');
 
     if (isCursorInGridContainer && !isCursorOverGridItem) {
-        resetIdleTimer(event.clientX, event.clientY);
+        // Get coordinates from touch events if available
+        const x = event.clientX || event.touches[0].clientX;
+        const y = event.clientY || event.touches[0].clientY;
+        resetIdleTimer(x, y);
     } else {
         clearTimers();
         hideIdleMessage(idleMessage);
@@ -43,6 +46,7 @@ function handleMouseMove(event) {
 
 // Shows the idle message after inactivity and positions it near the cursor
 function displayIdleMessage(x, y) {
+    // Prevent idle message from showing on smaller screens
     if (window.innerWidth <= 800) return;
 
     const idleMessage = document.getElementById('idleMessage');
@@ -86,6 +90,7 @@ function positionIdleMessage(idleMessage, x, y) {
 
 // Initialize idle timer on page load
 resetIdleTimer();
+
 
 
 
@@ -176,16 +181,16 @@ document.addEventListener('keydown', (event) => {
 });
 
 
-//REMOVE HIDDEN ON MOBILE
-// Function to check the screen width and remove the 'hidden' class
-function checkScreenWidth() {
-    const elements = document.querySelectorAll('.hidden'); // Select all elements with the 'hidden' class
-    if (window.matchMedia('(max-width: 750px)').matches) {
-      elements.forEach(element => {
-        element.classList.remove('hidden'); // Remove the 'hidden' class
-      });
-    }
-  }
+// //REMOVE HIDDEN ON MOBILE
+// // Function to check the screen width and remove the 'hidden' class
+// function checkScreenWidth() {
+//     const elements = document.querySelectorAll('.hidden'); // Select all elements with the 'hidden' class
+//     if (window.matchMedia('(max-width: 750px)').matches) {
+//       elements.forEach(element => {
+//         element.classList.remove('hidden'); // Remove the 'hidden' class
+//       });
+//     }
+//   }
   
-  // Run the function on page load
-  checkScreenWidth();
+//   // Run the function on page load
+//   checkScreenWidth();

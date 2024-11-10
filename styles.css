@@ -72,7 +72,6 @@ main {
   padding: 5px;
   border-radius: 2px;
   font-size: 12px;
-  z-index: 1000;
   transition: all 0.5s infite;
 }
 
@@ -409,6 +408,7 @@ main {
   font-size: 13px;
   letter-spacing: 2px;
   color: white;
+  pointer-events: auto;
 }
 
 /* --- IMAGES */
@@ -510,8 +510,7 @@ main {
   background-color: #9bd575;
   color: rgb(10, 10, 10);
   border: none;
-  border-radius: 2px;
-  cursor: pointer;
+  border-radius: 3px;
   font-family: var(--main-font);
   text-transform: uppercase;
   width: fit-content;
@@ -548,6 +547,7 @@ footer {
     padding: 12px;
     height: 100%;
     gap: 30px;
+    z-index: -10;
   }
 
   .menu-list {
@@ -565,7 +565,6 @@ footer {
   .socials {
     position: relative;
     bottom: 10px;
-    z-index: -999;
   }
 
   .logo-svg-container {
@@ -609,9 +608,6 @@ footer {
     margin-bottom: 1px;
   }
 
-  .load-more-btn-wrapper {
-    display: none;
-  }
 
   .content__vis--grid__item {
     width: 100%;

@@ -1,0 +1,145 @@
+:root {
+  --main-font: "lores-12", sans-serif;
+  --accent-white: whitesmoke;
+  --no-display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  padding: 30px;
+  background-color: rgb(209, 217, 208);
+}
+
+body {
+  overflow: hidden;
+  height: 100%;
+  font-family: var(--main-font);
+}
+
+.dashboard-look {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.logo-container {
+  margin: 0 auto;
+  width: fit-content;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+}
+.logo-container:hover {
+  animation: jump 0.5s ease-in-out infinite;
+}
+
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.logo.svg {
+  fill: #231f20;
+}
+
+.page-subtitle {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+  top: -20px;
+}
+
+.projects-container {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.projects-table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  width: 100%;
+  position: relative;
+  font-family: var(--main-font);
+}
+
+caption {
+  caption-side: bottom;
+  padding: 10px;
+  font-weight: bold;
+}
+
+thead,
+tfoot {
+  background-color: rgb(228 240 245);
+}
+
+th {
+  text-align: left;
+  height: 20px;
+  background-color: whitesmoke;
+}
+
+.tr-header {
+  background-color: rgba(210, 210, 210, 0.6);
+  color: black;
+}
+
+th a {
+  color: black;
+  text-decoration: none;
+}
+
+th a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+}
+
+td:last-of-type {
+  text-align: center;
+}
+
+tbody > tr:nth-of-type(even) {
+  background-color: rgb(237 238 242);
+}
+
+tfoot th {
+  text-align: right;
+}
+
+tfoot td {
+  font-weight: bold;
+}
+
+footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: auto;
+  right: 0;
+}

@@ -30,7 +30,7 @@ html {
   box-sizing: border-box;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  -webkit-overflow-scrolling: touch; 
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -96,6 +96,22 @@ main {
   text-underline-offset: 3px;
 }
 
+.landing-sub-container {
+  width: 100%;
+  position: absolute;
+  top: 550px;
+}
+
+.pg-header-text-landing {
+  margin: 0 auto;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: whitesmoke;
+}
+
 .no-overflow {
   overflow: hidden;
 }
@@ -113,6 +129,7 @@ main {
 
 .landing-vid__container {
   position: absolute;
+  user-select: none;
   top: 0;
   left: 0;
   right: 0;
@@ -120,6 +137,7 @@ main {
   padding: 0;
   height: 100%;
   overflow: hidden;
+  background-color: rgba(50, 49, 88, 1);
 }
 
 .landing-vid {
@@ -127,6 +145,7 @@ main {
   height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
+  mix-blend-mode: normal;
 }
 
 /* --- MENU */
@@ -161,9 +180,9 @@ main {
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  color: black;
+  color: rgb(0, 0, 0);
   appearance: none;
-  background-color: rgba(119, 218, 117, 0.5);
+  background-color: rgba(98, 187, 139, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -181,7 +200,7 @@ main {
 }
 
 .logo-svg-container {
-  border: 1px solid #9bd575;
+  border: 4px solid rgba(119, 218, 117, 1);
   width: 100%;
   height: 100%;
   margin: 0;
@@ -195,6 +214,25 @@ main {
   position: absolute;
   top: 0;
   bottom: 0;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.logo {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.logo-png {
+  margin: 0;
+  width: fit-content;
+  transform: scale(1.3);
+  height: auto;
 }
 
 /* Base styling for the logo SVG */
@@ -206,8 +244,9 @@ main {
 
 /* Path elements inside the SVG will animate on hover */
 .cls-1:hover {
-  fill: hsla(298, 74%, 50%, 0.7);
-  transition: fill 0.5s ease-in-out;
+  fill: transparent;
+  stroke: transparent;
+  transition: fill 2s ease-in-out, stroke 2s ease-in-out;
 }
 
 /* Return to default color after hover ends */
@@ -543,6 +582,12 @@ footer {
   color: black;
 }
 
+.move-down,
+.move-down-330,
+.move-down-420 {
+  display: none;
+}
+
 @media only screen and (max-width: 845px) {
   .menu-container {
     position: fixed;
@@ -603,6 +648,26 @@ footer {
     position: absolute;
     top: 130px;
     fill: var(--accent-white);
+  }
+
+  .logo-png {
+    margin: 0;
+    width: fit-content;
+    transform: scale(.8);
+    position: absolute;
+    top: 125px;
+    height: auto;
+  }
+
+  .landing-sub-container {
+    margin: 0 auto;
+    position: absolute;
+    top: 350px;
+  }
+  
+  .pg-header-text-landing {
+    width: 200px;
+    font-size: 20px;
   }
 
   .move-down {

@@ -24,8 +24,8 @@ document.addEventListener('keydown', function(event) {
 let idleTimeout;
 let messageTimeout;
 
-document.addEventListener('mousemove', handleMouseInteraction);
-document.addEventListener('touchstart', handleMouseInteraction); // Added for mobile touch support
+document.addEventListener('mousemove', debounce(handleMouseInteraction, 100));
+document.addEventListener('touchstart', debounce(handleMouseInteraction, 100));
 
 // Handles mouse or touch interaction and checks if the cursor is over a grid item
 function handleMouseInteraction(event) {
@@ -33,10 +33,11 @@ function handleMouseInteraction(event) {
     const isCursorInGridContainer = event.target.closest('.content__vis--grid');
     const idleMessage = document.getElementById('idleMessage');
 
+    // Determine coordinates based on input type
+    const x = event.touches?.[0]?.clientX || event.clientX;
+    const y = event.touches?.[0]?.clientY || event.clientY;
+
     if (isCursorInGridContainer && !isCursorOverGridItem) {
-        // Get coordinates from touch events if available
-        const x = event.clientX || event.touches[0].clientX;
-        const y = event.clientY || event.touches[0].clientY;
         resetIdleTimer(x, y);
     } else {
         clearTimers();
@@ -46,14 +47,12 @@ function handleMouseInteraction(event) {
 
 // Shows the idle message after inactivity and positions it near the cursor
 function displayIdleMessage(x, y) {
-    // Prevent idle message from showing on smaller screens
-    if (window.innerWidth <= 800) return;
+    if (window.innerWidth <= 800) return; // Skip for smaller screens
 
     const idleMessage = document.getElementById('idleMessage');
-    const isCursorOverGridItem = document.elementFromPoint(x, y).closest('.content__vis--grid__item');
-    const isCursorInGridContainer = document.elementFromPoint(x, y).closest('.content__vis--grid');
+    const isCursorOverGridItem = document.elementFromPoint(x, y)?.closest('.content__vis--grid__item');
+    const isCursorInGridContainer = document.elementFromPoint(x, y)?.closest('.content__vis--grid');
 
-    // Show the idle message only if the cursor is inside the grid container but outside grid items
     if (isCursorInGridContainer && !isCursorOverGridItem) {
         positionIdleMessage(idleMessage, x, y);
         idleMessage.style.display = 'block';
@@ -68,7 +67,9 @@ function displayIdleMessage(x, y) {
 function resetIdleTimer(x, y) {
     clearTimers();
     hideIdleMessage(document.getElementById('idleMessage'));
-    idleTimeout = setTimeout(() => displayIdleMessage(x, y), 1000); // Show after 1 second of inactivity
+    if (x != null && y != null) {
+        idleTimeout = setTimeout(() => displayIdleMessage(x, y), 1000); // Show after 1 second of inactivity
+    }
 }
 
 // Clears both idle and message timers
@@ -79,7 +80,7 @@ function clearTimers() {
 
 // Hides the idle message
 function hideIdleMessage(idleMessage) {
-    idleMessage.style.display = 'none';
+    if (idleMessage) idleMessage.style.display = 'none';
 }
 
 // Positions the idle message near the cursor
@@ -88,8 +89,15 @@ function positionIdleMessage(idleMessage, x, y) {
     idleMessage.style.top = `${y - 8}px`;
 }
 
-// Initialize idle timer on page load
-resetIdleTimer();
+// Debounce function to optimize event listeners
+function debounce(func, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
 
 
 
@@ -146,32 +154,36 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// LOAD MORE BUTTON
-const loadMoreBtn = document.getElementById('loadMoreBtn');
-const hiddenItems = document.querySelectorAll('.hidden');
+document.addEventListener('DOMContentLoaded', () => {
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const hiddenItems = Array.from(document.querySelectorAll('.hidden'));
 
-let itemsToShow = 2; // Number of items to reveal per click
-let currentIndex = 0;
+    const itemsToShow = 2; // Number of items to reveal per click
+    let currentIndex = 0;
 
-// Function to reveal hidden items
-function loadMoreItems() {
-    const endIndex = currentIndex + itemsToShow;
+    // Function to reveal hidden items
+    function loadMoreItems() {
+        const endIndex = Math.min(currentIndex + itemsToShow, hiddenItems.length);
 
-    // Loop through the hidden items and reveal them
-    for (let i = currentIndex; i < endIndex && i < hiddenItems.length; i++) {
-        hiddenItems[i].classList.remove('hidden');
+        for (let i = currentIndex; i < endIndex; i++) {
+            hiddenItems[i].classList.remove('hidden');
+        }
+
+        currentIndex = endIndex;
+
+        if (currentIndex >= hiddenItems.length) {
+            loadMoreBtn.style.display = 'none';
+        }
     }
 
-    currentIndex = endIndex;
-
-    // Hide the 'Load More' button if all items are visible
-    if (currentIndex >= hiddenItems.length) {
+    if (loadMoreBtn && hiddenItems.length > 0) {
+        loadMoreBtn.addEventListener('click', loadMoreItems);
+    } else if (loadMoreBtn) {
         loadMoreBtn.style.display = 'none';
     }
-}
+});
 
-// Event listener for the 'Load More' button
-loadMoreBtn.addEventListener('click', loadMoreItems);
+
 
 // Keyboard shortcut for the "M" key
 document.addEventListener('keydown', (event) => {
@@ -179,6 +191,23 @@ document.addEventListener('keydown', (event) => {
         loadMoreItems();
     }
 });
+
+document.querySelectorAll('.cls-1').forEach((logo) => {
+    logo.addEventListener('mouseenter', () => {
+        const landingVid = document.querySelector('.landing-vid');
+        if (landingVid) {
+            landingVid.style.mixBlendMode = 'saturation'; // Apply 'saturation' blend mode
+        }
+    });
+
+    logo.addEventListener('mouseleave', () => {
+        const landingVid = document.querySelector('.landing-vid');
+        if (landingVid) {
+            landingVid.style.mixBlendMode = 'normal'; // Reset to 'normal' blend mode
+        }
+    });
+});
+
 
 
 // //REMOVE HIDDEN ON MOBILE

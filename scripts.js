@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     const hiddenItems = Array.from(document.querySelectorAll('.hidden'));
 
-    const itemsToShow = 2; // Number of items to reveal per click
+    const itemsToShow = 6; // Number of items to reveal per click
     let currentIndex = 0;
 
     // Function to reveal hidden items

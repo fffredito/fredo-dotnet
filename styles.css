@@ -2,7 +2,7 @@
 
 :root {
   --main-font: "lores-12", sans-serif;
-  --accent-white: whitesmoke;
+  --accent-white: rgb(234, 234, 234);
   --no-display: none;
 }
 
@@ -55,7 +55,7 @@ main {
 }
 
 .green-bg-clr {
-  background-color: #69d17c;
+  background-color: rgb(105, 209, 124);
 }
 
 .big-wow {
@@ -396,34 +396,35 @@ main {
   padding: 20px 10px;
   width: 100%;
   height: fit-content;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   flex-shrink: 1;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 2px;
+
+  transition: all 0.3s ease;
 }
 
 .content__vis--grid__item {
   border: 3px solid #312fa6;
   margin: 0 auto;
-  padding: 12px 12px 0 12px;
-  width: 49%;
-  height: fit-content;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 2px;
-}
-
-.content__vis--grid__item:hover {
-  background-color: rgba(0, 0, 0, 1);
 }
 
 .content__vis--grid__item__img {
   padding: 0;
   width: 100%;
-  height: 430px;
+  height: 300px;
   min-height: 240px;
   object-fit: cover;
+  display: flex;
+  justify-content: end;
+  align-items: end;
 }
 
 .content__vis--grid__item__img video {
@@ -436,9 +437,16 @@ main {
 .content__vis--grid__item__info {
   margin: 0 auto;
   display: flex;
+  position: absolute;
   align-items: center;
   justify-content: space-between;
   font-family: var(--main-font);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.content__vis--grid__item__img:hover .content__vis--grid__item__info {
+  opacity: 1;
 }
 
 .content__vis--grid__item__info__date a {
@@ -653,7 +661,7 @@ footer {
   .logo-png {
     margin: 0;
     width: fit-content;
-    transform: scale(.8);
+    transform: scale(0.8);
     position: absolute;
     top: 125px;
     height: auto;
@@ -664,7 +672,7 @@ footer {
     position: absolute;
     top: 350px;
   }
-  
+
   .pg-header-text-landing {
     width: 200px;
     font-size: 20px;
@@ -692,6 +700,7 @@ footer {
 
   .content__vis--grid {
     margin-bottom: 1px;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .content__vis--grid__item {

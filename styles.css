@@ -2,7 +2,7 @@
 
 :root {
   --main-font: "lores-12", sans-serif;
-  --accent-white: rgb(234, 234, 234);
+  --accent-white: #323157;
   --no-display: none;
 }
 
@@ -370,7 +370,9 @@ main {
   position: relative;
   width: 100%;
   padding: 20px 0;
+  color: whitesmoke;
 }
+
 
 .visz-legend {
   padding: 12px 0;
@@ -383,17 +385,18 @@ main {
 .visz-legend p {
   padding: 3px 0 3px 18px;
   font-family: var(--main-font);
+  color: whitesmoke;
 }
 
 .visz-legend p a {
-  color: black;
+  color: whitesmoke;
   text-underline-offset: 2px;
 }
 
 .content__vis--grid {
   margin: 0 auto;
-  margin-top: 100px;
-  padding: 20px 10px;
+  margin-top: 52px;
+  padding: 10px 10px;
   width: 100%;
   height: fit-content;
   display: grid;
@@ -464,7 +467,7 @@ main {
 
 /* --- IMAGES */
 .content__prod-wrap {
-  margin-top: 80px;
+  margin-top: 52px;
 }
 
 .content__prod-desc p {
@@ -472,6 +475,7 @@ main {
   padding: 15px;
   font-family: var(--main-font);
   display: flex;
+  color: black;
 }
 
 .scan-smears {
@@ -587,7 +591,7 @@ footer {
   text-align: center;
   padding: 10px;
   font-size: 13px;
-  color: black;
+  color: whitesmoke;
 }
 
 .move-down,

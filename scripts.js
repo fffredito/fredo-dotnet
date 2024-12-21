@@ -304,3 +304,53 @@ document.querySelectorAll('.cls-1').forEach((logo) => {
   
 //   // Run the function on page load
 //   checkScreenWidth();
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Select the logo element
+    const logo = document.querySelector("#logo");
+    const logoWidth = logo.offsetWidth;
+    const logoHeight = logo.offsetHeight;
+  
+    // Initial position and movement speed
+    let posX = Math.random() * (window.innerWidth - logoWidth); // Random X position
+    let posY = Math.random() * (window.innerHeight - logoHeight); // Random Y position
+    let speedX = 1; // Horizontal speed
+    let speedY = 1; // Vertical speed
+  
+    // Update the logo's position
+    function moveLogo() {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+  
+      // Calculate new position
+      posX += speedX;
+      posY += speedY;
+  
+      // Check for collisions with the window boundaries and reverse direction if necessary
+      if (posX + logoWidth >= windowWidth || posX <= 0) {
+        speedX *= -1;
+      }
+  
+      if (posY + logoHeight >= windowHeight || posY <= 0) {
+        speedY *= -1;
+      }
+  
+      // Apply the new position with smooth movement
+      logo.style.left = `${posX}px`;
+      logo.style.top = `${posY}px`;
+  
+      // Continue the animation with the next frame
+      requestAnimationFrame(moveLogo);
+    }
+  
+    // Set the logo's initial position
+    logo.style.position = "absolute";
+    logo.style.left = `${posX}px`;
+    logo.style.top = `${posY}px`;
+  
+    // Start the movement animation
+    moveLogo();
+  });
+  

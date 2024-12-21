@@ -136,6 +136,7 @@ main {
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow: hidden;
   background-color: rgba(50, 49, 88, 1);
 }
 

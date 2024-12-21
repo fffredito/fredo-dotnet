@@ -104,55 +104,136 @@ function debounce(func, delay) {
 
 
 
-// VIDEO LOOPS ON HOVER
+// // VIDEO LOOPS ON HOVER
+// document.addEventListener("DOMContentLoaded", function () {
+//     const videos = document.querySelectorAll(".video");
+
+//     videos.forEach((video) => {
+//         video.addEventListener("mouseenter", function () {
+//             video.play();
+//         });
+
+//         video.addEventListener("mouseleave", function () {
+//             video.pause();
+//         });
+//     });
+
+//     const isMobile = window.innerWidth <= 768;
+
+//     if (isMobile) {
+//         // Function to check if an element is in the viewport
+//         function isInViewport(element) {
+//             const rect = element.getBoundingClientRect();
+//             return (
+//                 rect.top >= 0 &&
+//                 rect.left >= 0 &&
+//                 rect.bottom <=
+//                 (window.innerHeight || document.documentElement.clientHeight) &&
+//                 rect.right <=
+//                 (window.innerWidth || document.documentElement.clientWidth)
+//             );
+//         }
+
+//         // Function to handle video play/pause based on viewport visibility
+//         function handleVideoPlayback() {
+//             videos.forEach((video) => {
+//                 if (isInViewport(video)) {
+//                     video.play();
+//                 } else {
+//                     video.pause();
+//                 }
+//             });
+//         }
+
+//         // Initial check when DOM content is loaded
+//         handleVideoPlayback();
+
+//         // Event listener for scroll events
+//         window.addEventListener("scroll", handleVideoPlayback);
+//         videos.autoplay = true;
+//     }
+// });
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const videos = document.querySelectorAll(".video");
+    let currentIndex = 0; // Tracks the index of the current video being played
+    let playInterval;
 
-    videos.forEach((video) => {
+    // Function to pause all videos
+    function pauseAllVideos() {
+        videos.forEach(video => video.pause());
+    }
+
+    // Function to play the current video and pause all others
+    function playCurrentVideo() {
+        pauseAllVideos(); // Pause all videos
+        const currentVideo = videos[currentIndex];
+        currentVideo.play();
+    }
+
+    // Function to go to the next video (looping back to the first video when the end is reached)
+    function goToNextVideo() {
+        currentIndex = (currentIndex + 1) % videos.length; // Loop back to the start after the last video
+        playCurrentVideo();
+    }
+
+    // Start the automatic video switch every 5 seconds
+    function startAutoSwitch() {
+        playInterval = setInterval(goToNextVideo, 5000);
+    }
+
+    // Hover behavior: when a user hovers over a video, pause the others and play the hovered one
+    videos.forEach((video, index) => {
         video.addEventListener("mouseenter", function () {
+            // Stop the automatic switch when hovering
+            clearInterval(playInterval);
+            
+            // Pause all videos
+            pauseAllVideos();
+            
+            // Play the hovered video
             video.play();
         });
 
         video.addEventListener("mouseleave", function () {
-            video.pause();
+            // Resume the automatic video switch after hovering ends
+            startAutoSwitch();
         });
     });
 
-    const isMobile = window.innerWidth <= 768;
+    // IntersectionObserver to ensure that only visible videos play when not hovered
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
 
-    if (isMobile) {
-        // Function to check if an element is in the viewport
-        function isInViewport(element) {
-            const rect = element.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <=
-                (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <=
-                (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
-        // Function to handle video play/pause based on viewport visibility
-        function handleVideoPlayback() {
-            videos.forEach((video) => {
-                if (isInViewport(video)) {
+            if (entry.isIntersecting) {
+                // If the video is in the viewport, play it (only if it's not currently paused)
+                if (video !== videos[currentIndex] && !video.paused) {
                     video.play();
-                } else {
-                    video.pause();
                 }
-            });
-        }
+            } else {
+                // If the video is out of the viewport, pause it
+                video.pause();
+            }
+        });
+    }, { threshold: 0.5 });
 
-        // Initial check when DOM content is loaded
-        handleVideoPlayback();
+    // Observe each video element
+    videos.forEach((video) => {
+        observer.observe(video);
+    });
 
-        // Event listener for scroll events
-        window.addEventListener("scroll", handleVideoPlayback);
-        videos.autoplay = true;
-    }
+    // Start the first video
+    playCurrentVideo();
+
+    // Start auto-switching of videos
+    startAutoSwitch();
 });
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const loadMoreBtn = document.getElementById('loadMoreBtn');

@@ -128,7 +128,7 @@ main {
 /* --- LANDING */
 
 .landing-vid__container {
-  position: absolute;
+  position: static;
   user-select: none;
   top: 0;
   left: 0;
@@ -136,13 +136,13 @@ main {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
   background-color: rgba(50, 49, 88, 1);
 }
 
 .landing-vid {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
   object-fit: cover;
   object-position: 50% 50%;
   mix-blend-mode: normal;
@@ -304,6 +304,8 @@ main {
   flex-direction: column;
   width: auto;
   margin-top: 50px;
+
+  transition: all 0.3s ease;
 }
 
 .content__about {
@@ -359,7 +361,7 @@ main {
 
 .img-title {
   position: absolute;
-  background-color: var(--accent-white);
+  background-color: whitesmoke;
   font-size: 10px;
   padding: 4px;
   bottom: 10px;
@@ -369,13 +371,13 @@ main {
 .content__vis-wrapper {
   position: relative;
   width: 100%;
-  padding: 20px 0;
+  padding-top: 40px;
   color: whitesmoke;
 }
 
 
 .visz-legend {
-  padding: 12px 0;
+  padding-top: 12px;
   width: 100%;
   display: grid;
   grid-template-columns: auto;
@@ -395,12 +397,12 @@ main {
 
 .content__vis--grid {
   margin: 0 auto;
-  margin-top: 52px;
+  margin-top: 20px;
   padding: 10px 10px;
   width: 100%;
   height: fit-content;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   flex-shrink: 1;
   flex-wrap: wrap;
   justify-content: center;
@@ -422,8 +424,7 @@ main {
 .content__vis--grid__item__img {
   padding: 0;
   width: 100%;
-  height: 300px;
-  min-height: 240px;
+  height: 250px;
   object-fit: cover;
   display: flex;
   justify-content: end;
@@ -695,16 +696,19 @@ footer {
   }
 
   .content__prod-wrap {
-    margin-top: 80px;
+    margin-top: 55px;
+    padding-bottom: 50px;
   }
 
   .content__vis-wrapper {
     margin-top: 10px;
+
   }
 
   .content__vis--grid {
-    margin-bottom: 1px;
+    padding-bottom: 50px;
     grid-template-columns: repeat(1, 1fr);
+
   }
 
   .content__vis--grid__item {
@@ -717,8 +721,7 @@ footer {
   }
 
   .visz-legend {
-    padding: 12px 0;
-    margin-bottom: 50px;
+    padding-top: 12px;
     width: 100%;
     display: flex;
     flex-direction: column;

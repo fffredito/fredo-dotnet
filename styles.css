@@ -689,6 +689,10 @@ footer {
     height: auto;
   }
 
+  .logo-img {
+    content: url('https://storage.googleapis.com/fredito-online/assets/logo/made-by__watermark--white.png'); /* New image URL */
+  }
+
   .landing-sub-container {
     margin: 0 auto;
     position: absolute;

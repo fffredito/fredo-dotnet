@@ -1,0 +1,69 @@
+/* --- ROOT VARIABLES */
+
+:root {
+  --main-font: "VT323", monospace;
+  --alt-font: "Bytesized", sans-serif;
+  --alt-font--2: "panel-sans-mono", sans-serif;
+  --alt-font--3: "nitti", monospace;
+  --clr-accent--white: whitesmoke;
+  --clr-accent--green: rgba(98, 187, 139, 1);
+  --no-display: none;
+}
+
+
+/*  --- GLOBAL STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  background-color: rgb(209, 217, 208);
+  font-family: var(--alt-font);
+  line-height: 1.4;
+  color: #333;
+}
+
+main {
+  margin: 0 auto;
+  overflow-x: scroll;
+}
+
+.name--container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.name-h1 {
+  font-size: 3em;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.name-h2 {
+  font-family: var(--alt-font--3);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+

@@ -81,7 +81,6 @@ main {
   text-underline-offset: 6px;
 }
 
-
 .radio-link img {
   width: 50px;
 }
@@ -128,8 +127,14 @@ main {
   }
 
   .viz--video-player {
-  max-height: 100vh;
+    max-height: 89vh;
+  }
 }
+
+@media only screen and (max-width: 660px) {
+  .visualizer-container {
+    width: 88%;
+  }
 }
 
 @media only screen and (min-width: 1600px) {

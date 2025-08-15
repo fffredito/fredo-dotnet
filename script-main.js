@@ -1,24 +1,24 @@
 //Keyboard shortcuts
 
-document.addEventListener('keydown', function(event) {
-    switch (event.key) {
-        case 'v':
-            window.location.href = document.getElementById('visz').href;
-            break;
-        case 'h':
-            window.location.href = document.getElementById('home').href;
-            break;
-        case 'a':
-            window.location.href = document.getElementById('abt').href;
-            break;
-        case 's':
-            window.location.href = document.getElementById('scnz').href;
-            break;
-        case 'p':
-            window.location.href = document.getElementById('prds').href;
-            break;
-    }
-});
+// document.addEventListener('keydown', function(event) {
+//     switch (event.key) {
+//         case 'v':
+//             window.location.href = document.getElementById('visz').href;
+//             break;
+//         case 'h':
+//             window.location.href = document.getElementById('home').href;
+//             break;
+//         case 'a':
+//             window.location.href = document.getElementById('abt').href;
+//             break;
+//         case 's':
+//             window.location.href = document.getElementById('scnz').href;
+//             break;
+//         case 'p':
+//             window.location.href = document.getElementById('prds').href;
+//             break;
+//     }
+// });
 
 // Cursor hover effect for VISUALIZERS page
 let idleTimeout;

@@ -78,7 +78,7 @@ main {
 
 .radio-link h3:hover {
   text-decoration: underline;
-  text-underline-offset: 6px
+  text-underline-offset: 6px;
 }
 
 
@@ -126,6 +126,10 @@ main {
   .visualizer-container {
     width: 90%;
   }
+
+  .viz--video-player {
+  max-height: 100vh;
+}
 }
 
 @media only screen and (min-width: 1600px) {
